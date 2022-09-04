@@ -1,0 +1,122 @@
+{
+	"easycom": {
+		// 下载安装方式
+		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+	 },
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText":"燕姐说媒",
+				"enablePullDownRefresh": true
+			}
+		}
+		,{
+		    "path" : "pages/userlst/index",
+		    "style" : {
+				"navigationBarTitleText":"会员列表",
+				"enablePullDownRefresh": true
+			}
+		},		
+		{
+            "path" : "pages/userlst/detail",
+            "style" : {
+				"navigationBarTitleText":"会员详情"
+			}
+        }
+		
+	    ,{
+            "path" : "pages/service/index",
+            "style" : {
+				"navigationBarTitleText":"服务",
+				"enablePullDownRefresh": true
+			}
+        }
+        ,{
+            "path" : "pages/post/index",
+            "style" : {
+				"navigationBarTitleText":"新闻列表",
+				"enablePullDownRefresh": true
+			}
+        }
+        ,{
+            "path" : "pages/post/detail",
+            "style" : {
+				"navigationBarTitleText":"新闻详情"
+			}
+        }
+        ,{
+            "path" : "pages/example/index",
+            "style" : {
+				"navigationBarTitleText":"案例列表",
+				"enablePullDownRefresh": true
+			}
+        }
+		,{
+		    "path" : "pages/example/detail",
+		    "style" : {
+				"navigationStyle":"custom"
+			}
+		}
+        ,{
+            "path" : "pages/user/index",
+            "style" : {
+				"navigationBarTitleText":"用户中心"
+			}
+        }
+        ,{
+            "path" : "pages/user/userinfo",
+            "style" : {
+				"navigationBarTitleText":"用户详情"
+			}
+        }
+		,{
+		    "path" : "pages/user/userinfoedt",
+		    "style" : {
+				"navigationBarTitleText":"完善资料"
+			}
+		},
+		{
+		    "path" : "pages/user/heartedt",
+		    "style" : {
+				"navigationBarTitleText":"内心独白"
+			}
+		},
+		{
+		    "path" : "pages/user/workedt",
+		    "style" : {
+				"navigationBarTitleText":"工作经济家庭"
+			}
+		}
+        ,{
+            "path" : "pages/about/index",
+            "style" : {
+				"navigationBarTitleText":"联系我们"
+			}
+        }
+        ,{
+            "path" : "pages/message/index",
+            "style" : {
+				"navigationBarTitleText":"留言咨询"
+			}
+        }
+        
+       
+      
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#E04356",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"list":[
+			{"pagePath":"pages/index/index"},
+			{"pagePath":"pages/post/index"},
+			{"pagePath":"pages/example/index"},
+			{"pagePath":"pages/userlst/index"},
+			{"pagePath":"pages/user/index"}
+		]
+	}
+}

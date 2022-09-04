@@ -1,0 +1,109 @@
+<template>
+	<view class="swiper-box">
+		
+		<view class="searchInput">
+		    <navigator url="/pages/search/search" open-type="navigate">
+		        搜索
+		      </navigator>
+		</view>
+		
+		<swiper 
+			:indicator-dots="true" 
+			:autoplay="true" 
+			indicator-active-color="#E04356"
+			indicator-color="rgba(255,188,179,0.3)"
+			:interval="3000" 
+			:duration="1000">
+			<swiper-item v-for="item,index in swipers" :key="index">
+				<view class="swiper-item">
+					<image :src="item.image" mode="scaleToFill"  @click="clickSwiperItem(index)"></image>
+				</view>
+			</swiper-item>
+		</swiper>
+	</view>
+</template>
+
+<script>
+	import {mapActions} from 'vuex'
+	export default {
+		data() {
+			return {
+				swipers:[],	
+			};
+		},
+		methods:{
+			...mapActions(['isInPage']),
+			loadSwiper(){
+				this.$api.home.swiper()
+				.then((res)=>{
+					if(res.code == 1){
+						this.swipers = res.data
+					}
+				})
+			},
+			clickSwiperItem(index){
+				this.isInPage(this.swipers[index].url)
+				.then(res=>{
+					uni.switchTab({
+						url: this.swipers[index].url
+					})
+				})
+				.catch(()=>{
+					uni.navigateTo({
+						url: this.swipers[index].url
+					})
+				})
+			}
+		},
+		mounted() {
+			this.loadSwiper()
+		}
+	}
+</script>
+
+<style lang="scss" scoped>
+	
+	.searchInput{
+		display: flex;
+		flex-direction: row;
+		align-items: center; 		
+		position: absolute;	
+		margin-top: 20rpx;
+	    margin-left: 20rpx;
+		
+		width:700rpx;
+		height: 90rpx;
+		padding: 10rpx; /*注意，这里用的是 rpx*/
+		 
+		z-index:1;
+	}
+	
+	
+	navigator{
+		width: 100%;
+		height: 100%; /*继承父组件的高度*/
+		display: flex; /*定义成伸缩盒子*/
+		justify-content: center; /* 内容居中 */
+		align-items: center;  /*垂直居中*/
+		background-color: #fff; /*背景色*/
+		border-radius: 38rpx;  /*圆形边框*/
+		color:#666 ;
+	}
+	
+	
+	.swiper-box{		
+		
+		height: 480rpx;
+		width: 750rpx;
+		background-color: $uni-color-primary;
+		border-radius: $uni-border-radius-base;
+		swiper{
+			width: 750rpx;
+			height: 480rpx;
+			image{
+				width: 750rpx;
+				height: 480rpx;
+			}
+		}
+	}
+</style>
