@@ -14,7 +14,7 @@
 	import sdcTab from './children/sdc-tab.vue'	
 	import tabbar from '@/components/tabbar.vue'
 	import sdcUser from './children/sdc-user.vue'
-     import SdcSearch from './children/sdc-search.vue'
+    import SdcSearch from './children/sdc-search.vue'
     
 	
 	import {mapActions} from 'vuex'

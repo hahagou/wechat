@@ -7,9 +7,9 @@
 		<view class="content u-row-left">
 			<text class="title">编号:{{users.mcode}}</text>
 			<text class="content">| 年龄:{{users.age}} |</text>			
-			<text class="content">| 学历:{{users.edu}} |</text>
-			<text class="content">| 工作:{{users.work}} |</text>
-			<text class="content">| 收入:{{users.salary}} |</text>
+			<text class="content"> 学历:{{users.edu}} |</text>
+			<text class="content"> 工作:{{users.work}} |</text>
+			<text class="content"> 收入:{{users.salary}} |</text>
 			<text class="description">择偶要求:{{users.bio}}</text>
 		</view>
 	</view>

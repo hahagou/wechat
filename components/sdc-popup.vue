@@ -113,7 +113,7 @@
 	<view class="u_bottom">
 		
 	 <view>
-	   <u-button size="medium"  shape="circle" @click="this.show=false">取消</u-button>
+	   <u-button size="medium"  shape="circle" @click="this.show=false">重置条件</u-button>
 	  </view>	
 	   
 	 <view>  
@@ -184,6 +184,10 @@ export default {
 				work:'',     //  工作
 				
 				salary:'',  // 工资
+				
+				gender:'',
+				
+				address:'',
 			
 			},			
 			
@@ -580,10 +584,12 @@ export default {
 		
 		btn_confirm(){
 			
-			this.$store.commit('set_userdetail',this.model)
+			//this.$store.commit('set_userdetail',this.model)
 			
+			  //触发全局总线方法
+			 this.$bus.$emit('search',this.model)   //调用  sdc-user 里的 loaduser
 			
-			console.log(this.model)
+			//console.log(this.model)
 			this.show=false
 		}
 		

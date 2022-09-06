@@ -1,6 +1,6 @@
 <template>
 	<view class="example">
-		<list-tab @switchTab="changeTab" />
+		<list-tab  @switchTab="changeTab" />
 		<list-example ref="listExample" />
 		<tabbar />
 	</view>
@@ -11,8 +11,15 @@
 	import listExample from './children/list-example.vue'
 	import tabbar from '@/components/tabbar.vue'
 	export default {
+		
+		onLoad(options){
+			
+			
+			
+		},		
 		data() {
 			return {
+				 
 				category:''
 			};
 		},
@@ -22,8 +29,8 @@
 			tabbar
 		},
 		methods:{
-			changeTab(e){
-				this.category = e.tab.options
+			changeTab(e){								
+				this.category = e.tab.options				 		
 				this.$refs.listExample.reload(this.category)
 			}
 		},

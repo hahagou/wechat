@@ -113,9 +113,8 @@
 	"tabBar": {
 		"list":[
 			{"pagePath":"pages/index/index"},
-			{"pagePath":"pages/post/index"},
-			{"pagePath":"pages/example/index"},
 			{"pagePath":"pages/userlst/index"},
+			{"pagePath":"pages/example/index"},			
 			{"pagePath":"pages/user/index"}
 		]
 	}

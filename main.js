@@ -13,18 +13,25 @@ let vuexStore = require('@/store/$u.mixin.js')
 
 Vue.config.productionTip = false
 
+const Demo=Vue.extend() // by andy.ma  全局事件总线写法 
+const d=new Demo() //
+
+ Vue.prototype.$bus=d  // by andy.ma  设置全局总线
+
 App.mpType = 'app'
 
 Vue.use(uView)
 
 Vue.prototype.$apiPath = ApiPath 
 
+
+
 // 缓存管理
 Vue.prototype.$httpCache = Cache
 
 const app = new Vue({
     ...App,
-	store
+	store 
 })
 
 // http拦截器

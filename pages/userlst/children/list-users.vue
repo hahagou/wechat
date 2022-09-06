@@ -1,8 +1,7 @@
 <template>
 	<view class="list-post">
 		<view class="items">
-			<user-item v-for="item,index in list" :key="index"  :users="item"/>
-			
+			<user-item v-for="item,index in users" :key="index"  :users="item"/>			
 			<u-loadmore :status="status" />
 		</view>
 	</view>
@@ -16,7 +15,8 @@
 		
 		data() {
 			return {
-				list:[],
+				users:[],
+				model:{},
 				page:1,
 				status: 'loadmore',
 				
@@ -24,44 +24,69 @@
 		},
 		
 		methods:{
-			loadUsers(){
+		loadUsers(){ //console.log('wtf:',this.$api.user.index())
+			this.$api.user.index({
 				
-				console.log("in loadUsers:",this.form)
+				minage:this.model.minage?this.model.minage:'',   // 年龄范围
+				maxage:this.model.maxage?this.model.maxage:'',
 				
-				if(this.status == 'nomore')
-					return
-				this.status = 'loading'
+				mintall:this.model.mintall?this.model.mintall:'',  // 身高范围
+				maxtall:this.model.maxtall?this.model.maxtall:'',
 				
-				this.$api.user.index({
-					gender: this.form.gender,
-					mcode: this.form.mcode,
-					nickname:this.form.nickname,
-					page: this.page
-				})
-				.then(res=>{
-					if(res.code == 1 && res.data.data.length > 0){						
-						//console.log("res wtf:",res)						
-						this.list = this.list.concat(res.data.data)
-						this.status = 'loadmore'
-					}else{
-						this.status = 'nomore'
+				minWeight:this.model.minWeight?this.model.minWeight:'',  //体重范围
+				maxWeight:this.model.maxWeight?this.model.maxWeight:'',
+				
+				marrige:this.model.marrige?this.model.marrige:'',  //婚史
+				
+				car:this.model.car?this.model.car:'',     // 购车
+				
+				house:this.model.house?this.model.house:'',   // 购房
+								
+				edu:this.model.edu?this.model.edu:'',     // 学历		
+							
+				work:this.model.work?this.model.work:'',     //  工作
+				
+				salary:this.model.salary?this.model.salary:'',  // 工资
+				
+				
+				gender: this.form.gender,		
+				address:this.form.address,
+				page: this.page
+			})
+			.then(res=>{
+				
+				
+				if(res.code == 1 ){
+					this.users = res.data.data									
+					if(res.data.data.length){
+						this.status = 'loadmore'							
+					}else
+					{
+					  this.status = 'nomore'
 					}
-				})
-			},
+				}
+			})
+		},
 			
 			nextPage(){
 				this.page = this.page + 1
 				this.loadUsers()
 			},
 					 
-			reload(gender=null){ 
+			reload(){ 
 				this.page = 1
 				this.status = 'loadmore'
-				this.list = []
+				this.users = []
 				this.loadUsers()
 			} 
 		},
 		mounted() {
+			
+			this.$bus.$on('search',(e)=>{
+			    this.model=e				
+				 this.loadUsers()
+			}) 
+			
 			this.loadUsers()
 		},
 		onLoad() {

@@ -32,6 +32,7 @@ const user_account = HttpCache.get('user_account')
 const global_config = HttpCache.get('global_config')
 const store = new Vuex.Store({
 	state: {
+		searchdetail:{}, // by andy ma  用于搜索
 		userdetail:{},// by andy.ma  用于用户资料修改中的传值
 		userinfo: user_account ? user_account : {},
 		token: user_account['token'] ? user_account['token'] : null,
@@ -71,6 +72,10 @@ const store = new Vuex.Store({
 		
 		set_userdetail(state,userdetail){ //by andy.ma
 			state.userdetail=userdetail
+		},
+		
+		set_searchdetail(state,searchdetail){
+			state.searchdetail=searchdetail
 		},
 		
 		login(state,user){
@@ -162,7 +167,7 @@ const store = new Vuex.Store({
 					if(item.pagePath == path.split('?')[0])
 						has = true
 				})
-				//console.log("has:",has)
+				// console.log("has:",has)
 				has ? resolve() : reject()
 			})
 		},

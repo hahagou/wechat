@@ -65,17 +65,22 @@
 			   
 				//console.log(this.$store.getters.userdetail)
 						
+			//	 console.log("clickTabItem:",this.tabs[index].path)	
+						
 				 this.isInPage(this.tabs[index].path)
-				.then(()=>{
-			
+				.then(()=>{ 
 					
 				　uni.reLaunch({
 					 url: this.tabs[index].path,
 					   success: function(e) {
+						 //  console.log(e)
 					     var page = getCurrentPages()[0];
 					     if(page == undefined || page == null) return;
 					             page.onLoad(); //或者其它操作
-					      }
+					      },
+						fail:function(e) {
+						//	console.log(e)
+						} 
 					});
 					
 				})

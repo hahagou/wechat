@@ -5,7 +5,8 @@
 			active-color="#FFBCB3"
 			:list="list" :is-scroll="false" 
 			:current="current" 
-			@change="change">
+			@change="change"			 
+			>
 			
 		</u-tabs>
 	</view>
@@ -13,6 +14,9 @@
 
 <script>
 	export default {
+		
+ 
+		
 		data() {
 			return {
 				list: [
@@ -25,23 +29,28 @@
 			};
 		},
 		methods:{
-			change(index){
-				this.current = index
+		
+			
+			change(index){ 			 
+				this.current =index				
 				this.$emit('switchTab',{
 					tab: this.list[index]
 				})
 			},
-			loadTabs(){
+			loadTabs(){  
 				this.$api.example.tab()
 				.then(res=>{
 					if(res.code == 1){
+			 
 						this.list = this.list.concat(res.data)
 					}
 				})
 			}
 		},
 		mounted() {
-			this.loadTabs()
+		 
+			this.loadTabs()						
+		    
 		}
 	}
 </script>

@@ -12,19 +12,16 @@
 			
 	<text class="title" @click="xin" >最新</text>	<u-icon name="arrow-down-fill"  ></u-icon>
 		 
-		 
-	<text v-if="!form.sex"  @click="showSx = true" >性别</text>	
-	<text v-if="form.sex"  @click="showSx = true" >{{form.sex}}</text>	
-	<u-icon name="arrow-down-fill"  ></u-icon>
+	
 	 
-	<text @click="showA= true" >居住地</text>	<u-icon name="arrow-down-fill"  ></u-icon>		
+	<text @click="showA= true" >居住地</text>	<u-icon name="arrow-down-fill"  ></u-icon>	
+		
 	<text @click="showPop">更多情况</text>	<u-icon name="arrow-down-fill"  ></u-icon>
 			
 		</view>
 		
 	 <u-form :model="form" ref="uForm" label-width="150rpx">	
 		
- <u-action-sheet :list="actionSexList" v-model="showSx" @click="actionSexCallback"></u-action-sheet>
 	 
 		 
 		<u-picker
@@ -44,7 +41,7 @@
 	  <!-- 用户列表 -->	
 		<view class="items">
 			<user-item v-for="item,index in users" :users="item" :key="index" />
-			<u-loadmore :status="status" />
+			 
 		</view>
 		
 		
@@ -132,8 +129,7 @@
 					page: this.page
 				})
 				.then(res=>{
-					console.log(res.data.data.length)
-				 
+					
 					
 					if(res.code == 1 ){
 						this.users = res.data.data	
@@ -184,10 +180,10 @@
 			 	this.loadUsers()
 			 },
 			 		 
-			 reload(){ 
+			 reload(gender=null){ 
 			 	this.page = 1
 			 	this.status = 'loadmore'
-			 	this.users = []
+			 	this.list = []
 			 	this.loadUsers()
 			 },		 
 			 
@@ -210,7 +206,7 @@
 		  
 		  // 安装全局事件总线
 		 this.$bus.$on('search',(e)=>{
-		     this.model=e			
+		     this.model=e		
 			 this.loadUsers()
 		 }) 
 			
