@@ -1,11 +1,9 @@
-<template>
- 
+<template>	
+	<view class="index">		
+	<sdcUserch/>	
+	<listUsers :form="form" ref="listItem"/>
 	
-	<view class="index">
-		<sdcUserch/>
-		
-		<list-users :form="form" ref="listItem"/>
-		<tabbar />
+	<tabbar />
 	</view>
 </template>
 
@@ -17,17 +15,19 @@
 		
 		onLoad(options) {
 			
-			 
+			console.log(this.$api)
+			  
 			 this.form.gender=options.gender?options.gender:''
+			 
 			 this.form.mcode=options.mcode?options.mcode:''
 			 this.form.nickname=options.nickname?options.nickname:''
 			 
-			 
+		   //console.log("usrlst index:",this.form.gender)
 		},		
 		data() {
 			return {
 			 form:{
-				gender:'',
+			    gender:'',
 				mcode:'',
 				nickname:''					
 			  }

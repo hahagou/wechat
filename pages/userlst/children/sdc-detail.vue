@@ -97,8 +97,8 @@
 		
 		
 		<view class="bottom_bar">
-			
-			<view class="contact"></view>
+			<!-- pages/about/index -->
+			<view @click="toCon" class="contact"></view>
 			
 		</view>
 		
@@ -120,6 +120,11 @@
 					if(res.code == 1){
 						this.users = res.data
 					}
+				})
+			},
+			toCon(){
+				uni.navigateTo({
+					url:"/pages/about/index"
 				})
 			}
 		}

@@ -9,53 +9,19 @@
 		</view>		
 		 
 		 <view class="box3">
-			 <!-- u-row-between u-col-center -->
 			 
-			<view class="content">
-				
-			  <view class="item  u-flex">
-			 			
-			 			<view class="icon u-flex-1">
-			 				<u-icon name="weixin-circle-fill" :size="iconSize"></u-icon>
-			 			</view>
-			 			
-			 			<view class="text u-flex-3">
-			 			  微信
-			 			</view>
-			 			
-			 			<view class="text u-flex-10">
-			 				<text>{{global_config.wechat}}</text>
-			 			</view>
-			 			
-			 			<view class="text u-flex-10">
-			 				 <u-button size="medium" :plain="true" shape="circle" @click="copy" >立刻复制</u-button>
-			 			</view>	
-			 			
-			  </view>
-			</view>  
-			  
-			<view class="content">
-				
-				 <view style="width:85%;height: 600rpx;margin-top:25rpx;">
-					 
-					 <image :src="wecode" mode="widthFix"></image>
-					 
-					 
-				 </view>
-				
-			</view>  
 			 
-			  
 			 
 		 </view>
 		 
-		
-		 
 	 </view> 
 		  
-	 
 		  
-	
+	  
+		
+		
+		
+		
 	
 		
 		
@@ -75,17 +41,8 @@
 	export default {
 		data() {
 			return {
-				wecode:"http://www.fadmin.com/uploads/20220906/b2da629eebc652ef2548e72474063e04.jpg",
 				iconSize: "40rpx"
 			};
-		},
-		methods:{
-			
-			copy(){
-				
-				
-			}
-			
 		},
 		computed: {
 			...mapState(['global_config'])
@@ -98,7 +55,7 @@
 	   display: flex;
 	   justify-content: center;
 	   width:100%;
-	   height:230rpx;
+	   height:250rpx;
 	   background-color: #E04356;	
 			   
 		.box1{
@@ -137,51 +94,13 @@
 	}
 	
 	.box3{
-		display:flex;
-		flex-direction: column;
-		justify-content: center; 
-		align-items: center;
 		width:100%;
-	 
-		margin-top: 730rpx;
+		height:500rpx;
+		margin-top: 300rpx;
 		margin-bottom: 20rpx;
+		 
 		
-		.content{
-			display: flex;
-			justify-content: center;
-			width:100%;
-			margin-top: 10rpx;
-			
-			image{
-				width:95%;
-				
-			}
-		}
-		
-		 .item{
-			width:90%;			
-		    height:120rpx;  
-		 	border-radius: $uni-border-radius-lg; 
-		 	padding: 20rpx;
-		 	background-color:#a80000;		 	
-		 	border-bottom: 1rpx solid $uni-border-color-grey;
-		 	
-		 	.icon{
-		 		color: $uni-color-primary;
-		 	}
-		 	.text{
-		 		font-size: $uni-font-size-base;
-		 		color:#ffffff;					
-		 	}
-		 }
-		 
-		 
-		 
-		  
 	}
-	
-	
-	
 	
 	.about{
 		display: flex;
@@ -194,12 +113,12 @@
 				width: 90%;
 			}
 		}
-		/* .content{
+		.content{
 			margin-top: 120rpx;
 			margin-bottom: 20rpx;
 			padding: 0 $uni-spacing-row-base;
 			background-color: aqua;
-			  .item{
+			/* .item{
 				border-radius: $uni-border-radius-lg; 
 				padding: 10rpx;
 				background-color:#a80000;
@@ -213,7 +132,7 @@
 					font-size: $uni-font-size-base;
 					color:#ffffff;					
 				}
-			}  
-		} */
+			} */
+		}
 	}
 </style>

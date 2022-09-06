@@ -14,13 +14,16 @@
 		 
 	
 	 
-	<text @click="showA= true" >居住地</text>	<u-icon name="arrow-down-fill"  ></u-icon>	
+	<text v-if="!model.address"   @click="showA= true" >居住地</text>	
+	
+	<text v-if="model.address"   @click="showA= true" >{{model.address}}</text>	<u-icon name="arrow-down-fill"  ></u-icon>
+	
 		
 	<text @click="showPop">更多情况</text>	<u-icon name="arrow-down-fill"  ></u-icon>
 			
 		</view>
 		
-	 <u-form :model="form" ref="uForm" label-width="150rpx">	
+	 <u-form ref="uForm" label-width="150rpx">	
 		
 	 
 		 
@@ -37,12 +40,7 @@
 		 
 	 </u-form>	
 	
-	
-	  <!-- 用户列表 -->	
-		<view class="items">
-			<user-item v-for="item,index in users" :users="item" :key="index" />
-			 
-		</view>
+	 
 		
 		
 	</view>
@@ -71,8 +69,36 @@
 				},
 				defaultSelector: [0],
 				
-				model:{},
+				model:{
 				
+					minage:'',
+					maxage:'',
+					
+					mintall:'',
+					maxtall:'',
+					
+					minWeight:'',
+					maxWeight:'',
+					
+					marrige:'',  //婚史
+					
+					car:'',     // 购车
+					
+					house:'',   // 购房
+									
+					edu:'',     // 学历		
+				   				
+					work:'',     //  工作
+					
+					salary:'',  // 工资
+					
+					gender:'',
+					
+					address:'',
+				
+				},	  // 由 sdc-popup 触发 search 来设置 
+				
+				isearch:false,
 				
 				form:{
 					gender:'',
@@ -91,77 +117,23 @@
 									{
 										text: '保密'
 									}
-								],
-				
-				
-				
-				users:[]
+								],				
+			 	 
 			};
 		},
 		methods:{
-			loadUsers(){ //console.log('wtf:',this.$api.user.index())
-				this.$api.user.index({
-					
-					minage:this.model.minage?this.model.minage:'',   // 年龄范围
-					maxage:this.model.maxage?this.model.maxage:'',
-					
-					mintall:this.model.mintall?this.model.mintall:'',  // 身高范围
-					maxtall:this.model.maxtall?this.model.maxtall:'',
-					
-					minWeight:this.model.minWeight?this.model.minWeight:'',  //体重范围
-					maxWeight:this.model.maxWeight?this.model.maxWeight:'',
-					
-					marrige:this.model.marrige?this.model.marrige:'',  //婚史
-					
-					car:this.model.car?this.model.car:'',     // 购车
-					
-					house:this.model.house?this.model.house:'',   // 购房
-									
-					edu:this.model.edu?this.model.edu:'',     // 学历		
-								
-					work:this.model.work?this.model.work:'',     //  工作
-					
-					salary:this.model.salary?this.model.salary:'',  // 工资
-					
-					
-					gender: this.form.gender,		
-					address:this.form.address,
-					page: this.page
-				})
-				.then(res=>{
-					
-					
-					if(res.code == 1 ){
-						this.users = res.data.data	
-											
-						if(res.data.data.length){
-							this.status = 'loadmore'							
-						}else
-						{
-						  this.status = 'nomore'
-						}
-					}
-				})
+			loadUsers(){
+			        
+				this.$bus.$emit('hello',this.model)
+			
 			},
-			/* toMore(){  console.log("toMore")
-				uni.switchTab({
-					url: '/pages/userlst/index',	
-					success(res){
-						console.log('success',res)
-					},
-					fail(err) {
-						console.log('failure',err)
-					}									
-				})
-			}, */
+		
 			xin(){
-			 /* this.model.gender=this.form.gender
-			  this.model.address=this.form.address	  
-			  console.log(this.model) */
-			  	
+				
+				
 			},
 			
-			 actionSexCallback(index) {
+			/* actionSexCallback(index) {
 			 	uni.hideKeyboard();
 				
 			  this.form.sex = this.actionSexList[index].text;
@@ -170,12 +142,12 @@
 			 	  this.form.gender=1
 			 	else
 			 	  this.form.gender=0 				  
-				  //this.users=[];
+				 
 				  this.loadUsers()
 				  
-			 },
+			 }, */
 			 
-			 nextPage(){
+			 /* nextPage(){
 			 	this.page = this.page + 1
 			 	this.loadUsers()
 			 },
@@ -183,15 +155,23 @@
 			 reload(gender=null){ 
 			 	this.page = 1
 			 	this.status = 'loadmore'
-			 	this.list = []
+			 	this.users = []
 			 	this.loadUsers()
-			 },		 
+			 },	 */	 
 			 
 			 
-			 confirm(e) {			 	
-			 	
-			 	this.form.address = e.province.label + '-' + e.city.label + '-' + e.area.label		
-			 	this.loadUsers()
+			 confirm(e) {
+				 
+			
+			 	/* this.isearch=true
+			 	this.form.address = e.province.label + '-' + e.city.label + '-' + e.area.label								
+			 	 */
+				
+				this.model.address=e.province.label + '-' + e.city.label + '-' + e.area.label
+				
+				//console.log(this.model)
+			    this.loadUsers()
+			 
 			 },
 			 
 			showPop(){
@@ -203,10 +183,12 @@
 			
 		},
 		mounted() {
-		  
+		  console.log("mounted触发一次")
 		  // 安装全局事件总线
 		 this.$bus.$on('search',(e)=>{
-		     this.model=e		
+			 
+		     this.model=e			 
+			 this.isearch=true;				  
 			 this.loadUsers()
 		 }) 
 			
@@ -222,7 +204,7 @@
 <style lang="scss" scoped>
 	.post-box{
 		width: 750rpx;
-		min-height: 300rpx;
+		 
 		background-color: $uni-bg-color;
 		padding: $uni-spacing-row-sm;
 		margin-top: $uni-spacing-col-base;

@@ -13,6 +13,19 @@
 		
 		props:['form'],
 		
+		mounted() {
+			
+			this.$bus.$on('hello',(data)=>{				
+				console.log("this.model",data)
+			 	 				
+				this.model=data
+				this.reload()
+			})
+			
+			this.loadUsers()
+			 console.log("mounted in lstuser",this.form.gender)
+		} ,
+		
 		data() {
 			return {
 				users:[],
@@ -24,7 +37,7 @@
 		},
 		
 		methods:{
-		loadUsers(){ //console.log('wtf:',this.$api.user.index())
+		loadUsers(){  
 			this.$api.user.index({
 				
 				minage:this.model.minage?this.model.minage:'',   // 年龄范围
@@ -49,23 +62,25 @@
 				salary:this.model.salary?this.model.salary:'',  // 工资
 				
 				
-				gender: this.form.gender,		
-				address:this.form.address,
+				gender: this.form.gender?this.form.gender:this.model.gender?this.model.gender:'',		
+				
+				address:this.model.address?this.model.address:'',
+								
+								
+				mcode:this.form.mcode?this.form.mcode:'',
+				nickname:this.form.nickname?this.form.nickname:'',
+				
+				
 				page: this.page
 			})
 			.then(res=>{
-				
-				
-				if(res.code == 1 ){
-					this.users = res.data.data									
-					if(res.data.data.length){
-						this.status = 'loadmore'							
-					}else
-					{
-					  this.status = 'nomore'
+					if(res.code == 1 && res.data.data.length > 0){						
+						this.users = this.users.concat(res.data.data)
+						this.status = 'loadmore'
+					}else{
+						this.status = 'nomore'
 					}
-				}
-			})
+				})
 		},
 			
 			nextPage(){
@@ -73,25 +88,14 @@
 				this.loadUsers()
 			},
 					 
-			reload(){ 
+			reload(){  console.log("reload")
 				this.page = 1
 				this.status = 'loadmore'
 				this.users = []
 				this.loadUsers()
 			} 
-		},
-		mounted() {
-			
-			this.$bus.$on('search',(e)=>{
-			    this.model=e				
-				 this.loadUsers()
-			}) 
-			
-			this.loadUsers()
-		},
-		onLoad() {
-			console.log("onload")
-		},
+		},	
+		
 		components:{
 			userItem
 		}

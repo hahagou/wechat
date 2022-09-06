@@ -2,7 +2,7 @@ import httpPath from './http.path.js'
 const install = (Vue, vm) => {
 	// 此为自定义配置参数，具体参数见上方说明  https://www.xcyintel.com   https://www.fadmin.com
 	Vue.prototype.$u.http.setConfig({
-		baseUrl: 'http://www.fadmin.com/addons/sdcmarry',
+		baseUrl: 'https://www.xcyintel.com/addons/sdcmarry',
 		showLoading: false,
 		dataType: 'json'
 		// 设置自定义头部content-type

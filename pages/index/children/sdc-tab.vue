@@ -27,7 +27,7 @@
 					}
 				})
 			},
-			clickTabItem(index){ 
+			clickTabItem(index){ console.log(index)
 				
 				//this.$store.commit('set_userdetail',this.form) // by andy.ma set user Gender
 				
@@ -69,17 +69,19 @@
 						
 				 this.isInPage(this.tabs[index].path)
 				.then(()=>{ 
-					
+					//console.log(this.tabs[index].path)
 				　uni.reLaunch({
 					 url: this.tabs[index].path,
 					   success: function(e) {
-						 //  console.log(e)
+						 console.log("in success:",e)						 
 					     var page = getCurrentPages()[0];
 					     if(page == undefined || page == null) return;
-					             page.onLoad(); //或者其它操作
-					      },
+					     
+						  page.onLoad(); //或者其它操作
+						 
+					    },
 						fail:function(e) {
-						//	console.log(e)
+						 	console.log("in error",e)
 						} 
 					});
 					

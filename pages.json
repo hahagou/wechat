@@ -91,7 +91,7 @@
         ,{
             "path" : "pages/about/index",
             "style" : {
-				"navigationBarTitleText":"联系我们"
+				"navigationBarTitleText":"联系红娘"
 			}
         }
         ,{
@@ -114,8 +114,9 @@
 		"list":[
 			{"pagePath":"pages/index/index"},
 			{"pagePath":"pages/userlst/index"},
-			{"pagePath":"pages/example/index"},			
+			{"pagePath":"pages/example/index"},		
 			{"pagePath":"pages/user/index"}
+		 
 		]
 	}
 }
