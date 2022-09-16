@@ -8,7 +8,7 @@
 			<text class="neiron">线下红娘服务，私人订制服务，全方位助您脱单</text>
 		</view>		
 		 
-		 <view class="box3">
+		 <view class="box3" style="height:1500rpx;margin-top: 150rpx;">
 			 <!-- u-row-between u-col-center -->
 			 
 			<view class="content">
@@ -36,7 +36,7 @@
 			  
 			<view class="content">
 				
-				 <view style="width:85%;height: 600rpx;margin-top:25rpx;">
+				 <view style="width:85%;margin-top:25rpx;">
 					 
 					 <image :src="wecode" mode="widthFix"></image>
 					 
@@ -73,9 +73,23 @@
 <script>
 	import {mapState} from 'vuex'
 	export default {
+		
+		mounted(){
+			
+		this.baseUrl=this.$u.http.config.baseUrl
+					
+					let arr=this.baseUrl.split('//')
+					
+					this.baseUrl=arr[0]+'//'+arr[1].split('/')[0]+'/' 
+			
+			this.wecode+=this.baseUrl+'/uploads/20220906/b2da629eebc652ef2548e72474063e04.jpg' 
+			console.log(this.wecode)
+			
+		},
 		data() {
 			return {
-				wecode:"http://www.fadmin.com/uploads/20220906/b2da629eebc652ef2548e72474063e04.jpg",
+				baseUrl:'',	  // http://www.fadmin.com/uploads/20220906/b2da629eebc652ef2548e72474063e04.jpg
+				wecode:'',
 				iconSize: "40rpx"
 			};
 		},
@@ -143,7 +157,7 @@
 		align-items: center;
 		width:100%;
 	 
-		margin-top: 730rpx;
+		/* margin-top: 730rpx; */
 		margin-bottom: 20rpx;
 		
 		.content{

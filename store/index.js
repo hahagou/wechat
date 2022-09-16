@@ -57,7 +57,7 @@ const store = new Vuex.Store({
 				iconPath: "/static/tabbar/example.png",
 				selectedIconPath: "/static/tabbar/example_selected.png",
 				text: '私人定制',
-				pagePath: '/pages/example/index'
+				pagePath: '/pages/service/fuwu'
 			},
 			{
 				iconPath: "/static/tabbar/me.png",

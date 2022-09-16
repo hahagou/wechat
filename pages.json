@@ -31,7 +31,8 @@
 				"navigationBarTitleText":"服务",
 				"enablePullDownRefresh": true
 			}
-        }
+        } 
+		
         ,{
             "path" : "pages/post/index",
             "style" : {
@@ -79,7 +80,7 @@
 		{
 		    "path" : "pages/user/heartedt",
 		    "style" : {
-				"navigationBarTitleText":"内心独白"
+				"navigationBarTitleText":"内心独白"				
 			}
 		},
 		{
@@ -91,7 +92,8 @@
         ,{
             "path" : "pages/about/index",
             "style" : {
-				"navigationBarTitleText":"联系红娘"
+				"navigationBarTitleText":"联系红娘",
+				"enablePullDownRefresh": false
 			}
         }
         ,{
@@ -103,6 +105,27 @@
         
        
       
+        ,{
+            "path" : "pages/service/children/sdc-fuwu",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",                
+				 "bounce":"none"
+            }
+            
+        }
+        ,{
+            "path" : "pages/service/fuwu",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                 
+				 "navigationStyle":"custom",
+				 "bounce":"none"
+				 
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
@@ -114,7 +137,7 @@
 		"list":[
 			{"pagePath":"pages/index/index"},
 			{"pagePath":"pages/userlst/index"},
-			{"pagePath":"pages/example/index"},		
+			{"pagePath":"pages/service/fuwu"},		
 			{"pagePath":"pages/user/index"}
 		 
 		]

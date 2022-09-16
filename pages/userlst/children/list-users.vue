@@ -74,7 +74,8 @@
 				page: this.page
 			})
 			.then(res=>{
-					if(res.code == 1 && res.data.data.length > 0){						
+					if(res.code == 1 && res.data.data.length > 0){
+						this.users =[]
 						this.users = this.users.concat(res.data.data)
 						this.status = 'loadmore'
 					}else{

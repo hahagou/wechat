@@ -1,22 +1,49 @@
 <template>
 	<view class="item u-flex u-row-center" @click="toDetail(users)" >
 		<!-- <image :src="users.avatar" mode="widthFix"></image> -->
-		<image v-if="users.gender" src="http://www.fadmin.com/uploads/pics/manhd.png"  mode="widthFix"/>
-		<image v-else  src="http://www.fadmin.com/uploads/pics/girlhd.png"  mode="widthFix"/> 
-		 
+		<image  :src="baseUrl"  mode="widthFix"/>
+	 
 		<view class="content u-row-left">
 			<text class="title">编号:{{users.mcode}}</text>
 			<text class="content">| 年龄:{{users.age}} |</text>			
 			<text class="content"> 学历:{{users.edu}} |</text>
 			<text class="content"> 工作:{{users.work}} |</text>
 			<text class="content"> 收入:{{users.salary}} |</text>
-			<text class="description">择偶要求:{{users.bio}}</text>
+			<text class="description">心声:{{users.bio}}</text>
 		</view>
 	</view>
 </template>
 
 <script>
 	export default {
+		data() {			   
+			return {
+				baseUrl:''				
+			}			
+		},
+		
+		mounted(){
+			
+		 this.baseUrl=this.$u.http.config.baseUrl
+			
+			let arr=this.baseUrl.split('//')
+			
+			this.baseUrl=arr[0]+'//'+arr[1].split('/')[0]+'/' 
+			
+			
+			if(this.users.gender)
+			{
+				this.baseUrl+='/uploads/pics/manhd.png'
+			}
+			else
+			{
+				this.baseUrl+='/uploads/pics/girlhd.png'
+			}
+			
+			 
+			
+		},
+		
 		 props: {
 		 	users: Object
 		 },
@@ -40,7 +67,7 @@
 			border-bottom: none;
 		}
 		image{
-			width: 300rpx;
+			width: 220rpx;
 			border-radius: $uni-border-radius-sm;
 		}
 		.content{

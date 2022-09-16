@@ -13,7 +13,18 @@
 	export default {
 		
 		onLoad(options){
+	       
+			///console.log(this.$u.http.config.baseUrl)
 			
+			this.baseUrl=this.$u.http.config.baseUrl
+			
+			let arr=this.baseUrl.split('//')
+			
+			let burl=arr[0]+'//'+arr[1].split('/')[0]+'/'
+			console.log(burl)
+			//arr=this.baseUrl.split("//")
+			
+			//console.log(arr)
 			
 			
 		},		

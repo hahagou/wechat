@@ -1,16 +1,19 @@
 <template>
 	<view class="detail">
 	
+	  <view class="imgbox">
+		  <image   :src="baseUrl"  mode="widthFix"/>
+		  
+	  </view>
 		
-		<image v-if="users.gender" src="http://www.fadmin.com/uploads/pics/man.png"  mode="widthFix"/>
-		<image v-else  src="http://www.fadmin.com/uploads/pics/girl.png"  mode="widthFix"/>
+		
 			  
 		
 		<view class="text_box">
 		 
-			<text class="mcode">编号:{{users.mcode}}</text>
-	       <image v-if="users.gender" src="http://www.fadmin.com/uploads/pics/manhd.png" />
-	       <image v-else  src="http://www.fadmin.com/uploads/pics/girlhd.png" />
+			<text class="mcode">编号:{{users.mcode}}
+		</text>
+	   
 	  
 	  
 		 <view class="nbox">
@@ -77,12 +80,12 @@
 				
 				
 				
-				<u-cell-item v-if="user.gender" title="是否购房" :arrow="false">
+				<u-cell-item v-if="users.gender"  title="是否购房" :arrow="false">
 					<text > {{users.house}}</text>				
 				</u-cell-item>
 				
 				
-				<u-cell-item v-if="user.gender" title="是否购车" :arrow="false">
+				<u-cell-item v-if="users.gender"    title="是否购车" :arrow="false">
 					<text > {{users.car}}</text>				
 				</u-cell-item>
 				
@@ -97,8 +100,8 @@
 		
 		
 		<view class="bottom_bar">
-			<!-- pages/about/index -->
-			<view @click="toCon" class="contact"></view>
+	
+			<u-button @click="toCon" size="default" :custom-style="customStyle" shape="circle" >联系红娘</u-button>
 			
 		</view>
 		
@@ -108,9 +111,26 @@
 
 <script>
 	export default {
+		
+		mounted(){
+			
+		
+	
+			
+			//console.log("sdc-user 为毛",this.baseUrl)
+			
+		},
 		data() {
 			return {
-				users: {}
+				users: {},
+				customStyle:{
+					width:"450rpx",
+					backgroundImage:"linear-gradient(90deg,#e64128,#e8622d)",
+					color:"#ffffff",
+					fontSize:"12pt",
+				},
+			    baseUrl:''	
+				
 			};
 		},
 		methods:{
@@ -119,6 +139,25 @@
 				.then(res=>{
 					if(res.code == 1){
 						this.users = res.data
+						
+						this.baseUrl=this.$u.http.config.baseUrl
+									
+									let arr=this.baseUrl.split('//')
+									
+									this.baseUrl=arr[0]+'//'+arr[1].split('/')[0]+'/' 
+									
+									
+									if(this.users.gender)
+									{
+										this.baseUrl+='/uploads/pics/man.png'
+									}
+									else
+									{
+										this.baseUrl+='/uploads/pics/girl.png'
+									}
+									
+										console.log("users is:",this.users)
+						
 					}
 				})
 			},
@@ -145,6 +184,11 @@
 	    -webkit-tap-highlight-color: transparent;
 	}
 	
+	.imgbox{
+		display: flex;
+		justify-content: center;
+		width:100%;
+	}
 	
 	
 	.detail{
@@ -157,7 +201,7 @@
 	
 	.detail .text_box  {
 		
-		width:95%;
+		width:100%;
 		height:60px;
 		background-color: #ffffff;
 		margin:10rpx auto 0 auto;
@@ -212,6 +256,7 @@
 		 justify-content: center;
 		 width:750rpx;
 		 height: 120rpx;
+		 margin-top: 20rpx;
 		 
 		 background-color: #ffffff;
 		 

@@ -390,28 +390,17 @@
 							  
 					],
 					
-				lscar:[
+				lscar:[					
 					
 					{
-						  	value:'婚后购车',
-						  	label:'婚后购车'
-					},
-					{
-						  	value:'已购车无贷款',
-						  	label:'已购车无贷款'
-					},
-					{
-						  	value:'已购车有贷款',
-						  	label:'已购车有贷款'
+						  	value:'已购车',
+						  	label:'已购车'
 					},
 					{
 						  	value:'未购车',
 						  	label:'未购车'
-					},
-					{
-						  	value:'需要时购车',
-						  	label:'需要时购车'
-					},
+					}
+					
 				]
 				
 			}
