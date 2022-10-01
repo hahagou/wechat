@@ -7,7 +7,8 @@
 			indicator-active-color="#E04356"
 			indicator-color="rgba(255,188,179,0.3)"
 			:interval="3000" 
-			:duration="1000">
+			:duration="1000"
+			:circular="true">
 			<swiper-item v-for="item,index in swipers" :key="index">
 				<view class="swiper-item">
 					<image :src="item.image" mode="scaleToFill"  @click="clickSwiperItem(index)"></image>

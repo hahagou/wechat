@@ -34,6 +34,7 @@
 			},1000)
 		},
 		onReachBottom() {
+				console.log("onReachBottom")
 			this.$refs.listPost.nextPage()
 		}
 	}

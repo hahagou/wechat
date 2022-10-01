@@ -9,7 +9,7 @@
 			<text class="content"> 学历:{{users.edu}} |</text>
 			<text class="content"> 工作:{{users.work}} |</text>
 			<text class="content"> 收入:{{users.salary}} |</text>
-			<text class="description">心声:{{users.bio}}</text>
+			<text class="description">择偶要求:{{users.bio}} |</text>
 		</view>
 	</view>
 </template>

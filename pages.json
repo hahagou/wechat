@@ -137,7 +137,7 @@
 		"list":[
 			{"pagePath":"pages/index/index"},
 			{"pagePath":"pages/userlst/index"},
-			{"pagePath":"pages/service/fuwu"},		
+			{"pagePath":"pages/service/fuwu"},		 //service/fuwu
 			{"pagePath":"pages/user/index"}
 		 
 		]

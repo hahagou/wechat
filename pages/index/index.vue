@@ -35,7 +35,11 @@
 			sdcUser,
 			SdcSearch,
 			tabbar
-		}
+		},
+		onShareAppMessage(){
+			
+			
+		} 
 	}
 </script>
 
